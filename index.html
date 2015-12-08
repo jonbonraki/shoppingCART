@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+
+    <!-- Meta-Information -->
+    <title>Cart</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="ACME Inc.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" href="/bower_components/bootstrap-css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap-css/css/bootstrap-theme.css">
+
+
+
+
+
+</head>
+<body ng-app="CartWebApp">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div ng-controller="itemsController" >
+<!-- Our Website Content Goes Here -->
+<table class="table">
+    <tr>
+
+        <th>Name</th>
+        <th>Description</th>
+        <th>Cost</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    <form class="form-inline">
+        <input ng-model="query" type="text"
+               placeholder="Filter by" autofocus>
+    </form>
+<!-- Vendor: Javascripts -->
+
+
+    <tr ng:repeat="item in items| filter: { name: query}">
+        <td><input type="text" ng-disabled="notdisabled" ng:model="item.name"class="input-small"></td>
+        <td><input type="text"  ng-disabled="notdisabled"ng:model="item.description" ng:required class="input-mini"></td>
+        <td><input type="number"  ng-disabled="notdisabled" ng:model="item.Price" ng:required class="input-mini"></td>
+        <td><input type="number"  ng-disabled="notdisabled" ng:model="item.quantity" ng:required class="input-mini"></td>
+        <td>{{item.quantity * item.Price | currency}}</td>
+        <td>
+            [<a href ng:click="removeItem($index)">X</a>]
+        </td>
+
+
+    </tr>
+    <td><a href ng:click="addItem()" class="btn btn-small">add item</a></td>
+    <td><a href ng:click="reviewItem()" class="btn btn-small">Review Items</a></td>
+    <td><a href ng:click="purchaseItem()" class="btn btn-small">Purchase</a></td>
+    <modal title="Confirmation" visible="showModal">
+        The order was successful along with the{{conformationnumber}}
+      </modal>
+    <div>
+        <select ng-model="selected" ng-options="item as item.name for item in items">
+            <option value="">Select item</option>
+        </select>
+
+        <td><input placeholder="Quantity" type="number" ng:model="item.quantity" ng:required class="input-mini"></td>
+    </div>
+
+</div>
+<!-- Vendor: Angular, followed by our custom Javascripts -->
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-route/angular-route.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap-css/js/bootstrap.min.js"></script>
+
+<!-- Our Website Javascripts -->
+<script src="script.js"></script>
+
+</body>
+</html>

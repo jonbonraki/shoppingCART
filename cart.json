@@ -1,0 +1,5 @@
+{"Items":[
+  {"name":"TV", "description":"Entertainment","Price":1000,"quantity":1},
+  {"name":"PS-4", "description":"Gaming device","Price":500,"quantity":0},
+  {"name":"Ps-4 Controller", "description":"Gaming Accessory","Price":50,"quantity":2}
+]}
